@@ -40,13 +40,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.example_picture)
+                        .setContentTitle("First notification")
+                        .setContentText("YO YOU BETTER LET THE DOG OUT BEFORE IT RAINS");
 
         Button button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(new OnClickListener()
         {
             public void onClick(View v)
             {
-
+                // Gets an instance of the NotificationManager service
+                NotificationManager mNotifyMgr =
+                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                // Builds the notification and issues it.
+                mNotifyMgr.notify(1, mBuilder.build());
 
             }
         });
