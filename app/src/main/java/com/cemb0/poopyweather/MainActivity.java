@@ -1,5 +1,6 @@
 package com.cemb0.poopyweather;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.example_picture)
                         .setContentTitle("First notification")
-                        .setContentText("YO YOU BETTER LET THE DOG OUT BEFORE IT RAINS");
+                        .setContentText("YO YOU BETTER LET THE DOG OUT BEFORE IT RAINS")
+                        .setPriority(Notification.PRIORITY_HIGH)
+                        .setDefaults(Notification.DEFAULT_ALL);
 
         Button button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(new OnClickListener()
