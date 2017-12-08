@@ -18,6 +18,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +65,33 @@ public class MainActivity extends AppCompatActivity {
                 // Builds the notification and issues it.
                 mNotifyMgr.notify(1, mBuilder.build());
 
+            }
+        });
+
+        Button button3 = (Button) findViewById(R.id.button3);
+        button3.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                int PLACE_PICKER_REQUEST = 1;
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+                try {
+                    startActivityForResult(builder.build(MainActivity.this), PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+
+                /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                if (requestCode == PLACE_PICKER_REQUEST) {
+                    if (resultCode == RESULT_OK) {
+                        Place place = PlacePicker.getPlace(data, this);
+                        String toastMsg = String.format("Place: %s", place.getName());
+                        Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                    }
+                }*/
             }
         });
 
